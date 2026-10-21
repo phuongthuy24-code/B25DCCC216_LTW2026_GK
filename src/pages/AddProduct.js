@@ -16,11 +16,18 @@ const AddProduct = ({ onAdd }) => {
       setError('Vui lòng nhập đầy đủ thông tin');
       return;
     }
+    const priceNum = Number(price);
+    const stockNum = Number(stock);
+    if (priceNum <= 0 || !Number.isInteger(stockNum) || stockNum < 0) {
+      setError('Giá phải lớn hơn 0, số lượng là số nguyên không âm');
+      return;
+    }
+    setError('');
     onAdd({
       name: name.trim(),
       category,
-      price: Number(price),
-      stock: Number(stock),
+      price: priceNum,
+      stock: stockNum,
     });
     navigate('/products', { replace: true });
   };
