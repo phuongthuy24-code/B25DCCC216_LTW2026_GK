@@ -41,6 +41,11 @@ const App = () => {
     setProducts(products.filter((p) => p.id !== id));
   };
 
+  const addProduct = (product) => {
+    const newId = products.reduce((max, p) => Math.max(max, p.id), 0) + 1;
+    setProducts([...products, { ...product, id: newId }]);
+  };
+
   return (
     <Routes>
       <Route path="/" element={<Layout loading={loading} error={error} />}>
@@ -55,7 +60,7 @@ const App = () => {
             />
           }
         />
-        <Route path="products/new" element={<AddProduct />} />
+        <Route path="products/new" element={<AddProduct onAdd={addProduct} />} />
         <Route path="products/:id" element={<ProductDetail products={products} />} />
       </Route>
     </Routes>
