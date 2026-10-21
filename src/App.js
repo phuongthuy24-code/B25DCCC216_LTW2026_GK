@@ -15,7 +15,15 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Mounting: đọc localStorage trước, không có mới gọi API
   useEffect(() => {
+    const saved = localStorage.getItem('gk_products');
+    if (saved) {
+      setProducts(JSON.parse(saved));
+      setLoading(false);
+      return;
+    }
+
     const controller = new AbortController();
     axios
       .get('/data/products.json', { signal: controller.signal })
@@ -28,8 +36,16 @@ const App = () => {
         setError('Không tải được dữ liệu');
         setLoading(false);
       });
+    // Unmounting: hủy request
     return () => controller.abort();
   }, []);
+
+  // Updating: lưu lại mỗi khi products đổi, chỉ khi đã tải xong
+  useEffect(() => {
+    if (!loading && !error) {
+      localStorage.setItem('gk_products', JSON.stringify(products));
+    }
+  }, [products, loading]);
 
   const changeStock = (id, delta) => {
     setProducts(
