@@ -29,7 +29,8 @@ const AddProduct = ({ onAdd }) => {
       price: priceNum,
       stock: stockNum,
     });
-    navigate('/products', { replace: true });
+    const message = `Đã thêm sản phẩm ${name.trim()}`;
+    navigate('/products', { replace: true, state: { message } });
   };
 
   return (

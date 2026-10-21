@@ -1,44 +1,149 @@
-.App {
-  text-align: center;
+:root {
+  --pink-50: #fff5f8;
+  --pink-100: #ffe3ec;
+  --pink-200: #ffc9db;
+  --pink-400: #ff8fb1;
+  --pink-500: #f0668f;
+  --pink-700: #c2305f;
+  --text: #5a2a3c;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 16px 48px;
+  background: var(--pink-50);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Nunito', Tahoma, sans-serif;
+  line-height: 1.5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#root {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1 {
+  color: var(--pink-500);
+  margin: 20px 0 12px;
+}
+
+/* ===== Thanh menu ===== */
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 8px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(240, 102, 143, 0.18);
 }
 
-.App-link {
-  color: #61dafb;
+nav a {
+  text-decoration: none;
+  color: var(--pink-700);
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition: background 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+nav a:hover { background: var(--pink-100); }
+
+/* BẮT BUỘC theo đề: mục đang chọn chữ đỏ, in đậm */
 .active { color: red; font-weight: bold; }
-nav a { margin-right: 16px; }
+nav a.active { background: var(--pink-100); }
 
-table { border-collapse: collapse; margin-top: 12px; }
-th, td { border: 1px solid #ccc; padding: 6px 12px; }
-tbody tr:hover { background: #eef; }
+/* ===== Bảng ===== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(240, 102, 143, 0.15);
+}
+
+th {
+  background: var(--pink-400);
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--pink-100);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+/* BẮT BUỘC theo đề: rê chuột đổi màu nền dòng */
+tbody tr:hover { background: var(--pink-100); }
+
+td a {
+  color: var(--pink-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+td a:hover { text-decoration: underline; }
+
+/* ===== Nút, ô nhập ===== */
+button {
+  background: var(--pink-400);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-right: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover:not(:disabled) { background: var(--pink-500); }
+button:active:not(:disabled) { transform: scale(0.95); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+input, select {
+  border: 2px solid var(--pink-200);
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+}
+
+input:focus, select:focus { border-color: var(--pink-400); }
+
+label { font-weight: 600; margin-right: 4px; }
+
+/* ===== Form thêm mới ===== */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 420px;
+  box-shadow: 0 4px 14px rgba(240, 102, 143, 0.15);
+}
+
+form div { margin-bottom: 12px; }
+form label { display: inline-block; min-width: 110px; }
+
+/* ===== Thông báo sau khi thêm ===== */
+.notice {
+  background: #fff;
+  border: 2px solid var(--pink-400);
+  border-radius: 14px;
+  padding: 8px 14px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.notice button { padding: 0 8px; margin-left: 6px; }
+
+/* ===== Chữ trong trang ===== */
+p { margin: 6px 0; }
