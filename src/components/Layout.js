@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './NavBar';
 
-const Layout = () => (
+const Layout = ({ loading, error }) => (
   <div>
     <NavBar />
-    <Outlet />
+    {loading ? <p>Đang tải...</p> : error ? <p>{error}</p> : <Outlet />}
   </div>
 );
 
