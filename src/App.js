@@ -49,7 +49,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout loading={loading} error={error} />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home products={products} />} />
         <Route
           path="products"
           element={
