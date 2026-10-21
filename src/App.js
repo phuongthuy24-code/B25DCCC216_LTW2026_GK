@@ -31,11 +31,30 @@ const App = () => {
     return () => controller.abort();
   }, []);
 
+  const changeStock = (id, delta) => {
+    setProducts(
+      products.map((p) => (p.id === id ? { ...p, stock: p.stock + delta } : p))
+    );
+  };
+
+  const deleteProduct = (id) => {
+    setProducts(products.filter((p) => p.id !== id));
+  };
+
   return (
     <Routes>
       <Route path="/" element={<Layout loading={loading} error={error} />}>
         <Route index element={<Home />} />
-        <Route path="products" element={<ProductList products={products} />} />
+        <Route
+          path="products"
+          element={
+            <ProductList
+              products={products}
+              onChangeStock={changeStock}
+              onDelete={deleteProduct}
+            />
+          }
+        />
         <Route path="products/new" element={<AddProduct />} />
         <Route path="products/:id" element={<ProductDetail products={products} />} />
       </Route>

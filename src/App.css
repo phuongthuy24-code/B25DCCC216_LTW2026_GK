@@ -38,3 +38,7 @@
 }
 .active { color: red; font-weight: bold; }
 nav a { margin-right: 16px; }
+
+table { border-collapse: collapse; margin-top: 12px; }
+th, td { border: 1px solid #ccc; padding: 6px 12px; }
+tbody tr:hover { background: #eef; }
